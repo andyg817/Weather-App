@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/0cd86f8564.js" crossorigin="anonymous"></script></head>
+<body>
+    <!--Container that holds everything-->
+    <main class="main-cont">
+        <!--Search container-->
+        <button class="home-btn">
+            <i class="fa-solid fa-house"></i>
+        </button>
+        <header class="search-cont">
+            <input class="city-input" placeholder="Search City" type="text">
+            <button class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </header>
+
+        <!--Container for weather page-->
+        <section class="weather-info" style="display: none;">
+            <!--Location/ Date/ City Top-->
+            <div class="location-date-cont">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4 class="country-txt">Jakarta</h4>
+                </div>
+                <h5 class="curr-date regular-txt">Wed, 07 Aug</h5>
+            </div>
+
+            <!--Weather summary top-->
+            <div class="weather-summary-cont">
+                <img src="Images/clouds.png" class="weather-img">
+                <div class="weather-summary-info">
+                    <h1 class="temp-txt">29 °C</h1>
+                    <h3 class="condition-txt regular-txt">Clouds</h3>
+                </div>
+            </div>
+
+            <!--Humidity and wind speed-->
+            <div class="weather-conditions-cont">
+                <div class="condition-item">
+                    <div class="condition-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div class="condition-info">
+                        <h5 class="regular-txt">Humidity</h5>
+                        <h5 class="humidity-txt">55%</h5>
+                    </div>
+                </div>
+
+                <div class="condition-item">
+                    <div class="condition-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <div class="condition-info">
+                        <h5 class="regular-txt">Wind Speed</h5>
+                        <h5 class="wind-txt">2 M/s</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!--Forecast-->
+            <div class="forecast-items-cont">
+                <div class="forecast-item">
+                    <h5 class="forecast-date regular-txt">05 Aug</h5>
+                    <img src="Images/clouds.png" class="forecast-img">
+                    <h5 class="forecast-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-date regular-txt">05 Aug</h5>
+                    <img src="Images/clouds.png" class="forecast-img">
+                    <h5 class="forecast-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-date regular-txt">05 Aug</h5>
+                    <img src="Images/clouds.png" class="forecast-img">
+                    <h5 class="forecast-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-date regular-txt">05 Aug</h5>
+                    <img src="Images/clouds.png" class="forecast-img">
+                    <h5 class="forecast-temp">29 °C</h5>
+                </div>
+            </div>
+        </section>
+
+        <section class="home">
+            <h5 class="Header">Cities Around the World</h5>
+            <div class="major-cities">
+                <div class="major-city">
+                    <h5 class="city-name">Dallas</h5>
+                    <h5 class="city-date regular-txt">05 Aug</h5>
+                    <h5 class="forecast-temp">29 °C</h5>
+                    <img src="Images/clouds.png" class="city-img">
+                </div>
+                <div class="major-city">
+                    <h5 class="city-name">Dallas</h5>
+                    <h5 class="city-date regular-txt">05 Aug</h5>
+                    <h5 class="city-temp">29 °C</h5>
+                    <img src="Images/clouds.png" class="city-img">
+                </div>
+                <div class="major-city">
+                    <h5 class="city-name">Dallas</h5>
+                    <h5 class="city-date regular-txt">05 Aug</h5>
+                    <h5 class="city-temp">29 °C</h5>
+                    <img src="Images/clouds.png" class="city-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="not-found section-message" style="display: none;">
+            <img src="assets/message/not-found.png">
+            <div>
+                <h1>Not Found</h1>
+                <h4 class="regular-txt">
+                    The city you are looking for cannot be found.
+                </h4>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
