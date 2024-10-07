@@ -1,10 +1,10 @@
-
 const apiKey = '4d250c765ce1fdf5b1b7637059a909bb'
 
 const cityInput = document.querySelector('.city-input')
 const searchBtn = document.querySelector('.search-btn')
 const notFoundSection = document.querySelector('.not-found')
 const searchCitySection = document.querySelector('.home')
+const homeBtn = document.querySelector('.home-btn')
 
 const weatherInfoSection = document.querySelector('.weather-info')
 const countryTxt = document.querySelector('.country-txt')
@@ -15,6 +15,7 @@ const windValueTxt = document.querySelector('.wind-txt')
 const weatherSummaryImg = document.querySelector('.weather-img')
 const currentDateTxt = document.querySelector('.curr-date')
 const forecastItemsContainer = document.querySelector('.forecast-items-cont')
+const cityItemsContainer = document.querySelector('.city-items')
 
 //Search using click and enter on keyboard
 searchBtn.addEventListener('click', () => {
@@ -25,13 +26,16 @@ searchBtn.addEventListener('click', () => {
     }
 })
 cityInput.addEventListener('keydown', (event) => {
-    if (event.key == 'Enter' &&
-        cityInput.value.trim() != ''
-    ) {
+    if (event.key == 'Enter' && cityInput.value.trim() != '') {
         updateWeatherInfo(cityInput.value)
         cityInput.value = ''
         cityInput.blur()
     }
+})
+
+//home button
+homeBtn.addEventListener('click', () => {
+    showDisplaySection(searchCitySection)
 })
 
 //Get data using api
@@ -45,7 +49,6 @@ async function getFetchData(endPoint, city) {
 function showDisplaySection(section) {
     [weatherInfoSection, searchCitySection, notFoundSection]
         .forEach(section => section.style.display = 'none')
-
     section.style.display = 'flex'
 }
 
@@ -96,7 +99,50 @@ async function updateWeatherInfo(city) {
     showDisplaySection(weatherInfoSection)
 }
 
+///////////////////////////////////
+//Home page forecasts
+///////////////////////////////////
+async function updateCityInfo(city) {
+    const cityData = await getFetchData('forecast', city)
+    const timeTaken = '12:00:00'
+    const todayDate = new Date().toISOString().split('T')[0]
+
+    cityItemsContainer.innerHTML = ''
+    cityData.list.forEach(cityWeather => {
+        if (cityWeather.dt_txt.includes(timeTaken) && !cityWeather.dt_txt.includes(todayDate)) {
+            updateCityItems(cityWeather)
+        }
+    })
+}
+
+//Updating city
+function updateCityItems(weatherData) {
+    const {
+        dt_txt: date,
+        weather: [{ id }],
+        main: { temp }
+    } = weatherData
+    const dateTaken = new Date(date)
+    const dateOption = {
+        day: '2-digit',
+        month: 'short'
+    }
+
+    const dateResult = dateTaken.toLocaleDateString('en-US', dateOption)
+    const cityItem = `
+        <div class="city-item">
+            <h5 class="city-name">${city}</h5>
+            <h5 class="city-date regular-txt">${dateResult}</h5>
+            <h5 class="city-temp">${Math.round(temp)} °C</h5>
+            <img src="Images/${getWeaatherIcon(id)}" class="city-img">
+        </div>  
+    `
+    cityItemsContainer.insertAdjacentHTML('beforeend', cityItem)
+}
+
+///////////////////////////
 //Splitting forecast
+///////////////////////////
 async function updateForecastsInfo(city) {
     const forecastsData = await getFetchData('forecast', city)
     const timeTaken = '12:00:00'
@@ -104,8 +150,7 @@ async function updateForecastsInfo(city) {
 
     forecastItemsContainer.innerHTML = ''
     forecastsData.list.forEach(forecastWeather => {
-        if (forecastWeather.dt_txt.includes(timeTaken) &&
-            !forecastWeather.dt_txt.includes(todayDate)) {
+        if (forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)) {
             updateForecastItems(forecastWeather)
         }
     })

@@ -11,10 +11,10 @@
     <!--Container that holds everything-->
     <main class="main-cont">
         <!--Search container-->
-        <button class="home-btn">
-            <i class="fa-solid fa-house"></i>
-        </button>
         <header class="search-cont">
+            <button class="home-btn">
+                <i class="fa-solid fa-house"></i>
+            </button>
             <input class="city-input" placeholder="Search City" type="text">
             <button class="search-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -89,40 +89,57 @@
             </div>
         </section>
 
+        <!--Home screen-->
         <section class="home">
-            <h5 class="Header">Cities Around the World</h5>
-            <div class="major-cities">
-                <div class="major-city">
+            <h5 class="s-prompt regular-txt">Search any city around the world</h5>
+            <h5 class="c-header">Cities Around the World</h5>
+            <div class="city-items">
+                <div class="city-item">
                     <h5 class="city-name">Dallas</h5>
                     <h5 class="city-date regular-txt">05 Aug</h5>
                     <h5 class="forecast-temp">29 °C</h5>
-                    <img src="Images/clouds.png" class="city-img">
+                    <img src="Images/clear.png" class="city-img">
                 </div>
-                <div class="major-city">
+                <div class="city-item">
                     <h5 class="city-name">Dallas</h5>
                     <h5 class="city-date regular-txt">05 Aug</h5>
                     <h5 class="city-temp">29 °C</h5>
-                    <img src="Images/clouds.png" class="city-img">
+                    <img src="Images/clear.png" class="city-img">
                 </div>
-                <div class="major-city">
+                <div class="city-item">
                     <h5 class="city-name">Dallas</h5>
                     <h5 class="city-date regular-txt">05 Aug</h5>
                     <h5 class="city-temp">29 °C</h5>
-                    <img src="Images/clouds.png" class="city-img">
+                    <img src="Images/clear.png" class="city-img">
+                </div>
+            </div>
+            <div class="city-items"></div>
+                <div class="city-item">
+                    <h5 class="city-name">Dallas</h5>
+                    <h5 class="city-date regular-txt">05 Aug</h5>
+                    <h5 class="forecast-temp">29 °C</h5>
+                    <img src="Images/clear.png" class="city-img">
+                </div>
+            </div>
+            <div class="city-items"></div>
+                <div class="city-item">
+                    <h5 class="city-name">Dallas</h5>
+                    <h5 class="city-date regular-txt">05 Aug</h5>
+                    <h5 class="forecast-temp">29 °C</h5>
+                    <img src="Images/clear.png" class="city-img">
                 </div>
             </div>
         </section>
 
+        <!--City not found section-->
         <section class="not-found section-message" style="display: none;">
-            <img src="assets/message/not-found.png">
             <div>
                 <h1>Not Found</h1>
                 <h4 class="regular-txt">
-                    The city you are looking for cannot be found.
+                    The city you are looking for cannot be found. Please search again.
                 </h4>
             </div>
         </section>
     </main>
-    
 </body>
 </html>

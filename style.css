@@ -45,19 +45,18 @@ body::before {
 
 /*home button*/
 .home-btn {
-    position: absolute;
-    top: 6%;
-    
+    position:absolute;
     background: none;
     border: 3px solid transparent;
-    padding-right: 5px;
-    cursor: pointer;
     font-size: 18px;
+    left: 1px;
+    top: 20%;
+    cursor: pointer;
 }
 /* Search input */
 .search-cont {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding-left: 27px;
 }
 .city-input {
@@ -144,6 +143,7 @@ body::before {
     overflow-x: scroll;
     padding-bottom: 12px;
 }
+
 /*Individual forecast item*/
 .forecast-item {
     min-width: 70px;
@@ -163,6 +163,7 @@ body::before {
     width: 35px;
     height: 35px;
 }
+
 /*Scroll forecast*/
 .forecast-items-cont::-webkit-scrollbar {
     height: 8px;
@@ -177,23 +178,47 @@ body::before {
 }
 
 /*home page*/
-.major-cities {
-    position: center;
-    gap: 15px;
-}
-.major-city{
-    background: rgb(255, 255, 255, 0.1);
+.home {
     display: flex;
-    gap: 6px;
+    flex-direction: column;
+    gap: 5px;
+}
+.s-prompt {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.c-header {
+    padding-bottom: 10px
+}
+.city-items {
+    display: flex;
+    flex-direction: column;
+    position: center;
+    gap: 10px;
+}
+.city-item{
+    display: flex;
+    min-height: 60px;
+    background: rgb(255, 255, 255, 0.1);
+    gap: 25px;
     padding: 10px;
-    align-items: center;
     border-radius: 12px;
     transition: 0.3s background;
 }
-.major-city:hover {
+.city-item:hover {
     background: rgb(255, 255, 255, 0.15);
 }
-.city-img {
+.city-img { 
     width: 35px;
     height: 35px;
+}
+
+/*not found message*/
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 25%;
 }
