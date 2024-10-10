@@ -36,6 +36,7 @@ cityInput.addEventListener('keydown', (event) => {
 //home button
 homeBtn.addEventListener('click', () => {
     showDisplaySection(searchCitySection)
+    updateHomeWeatherInfo()
 })
 
 //Get data using api
@@ -102,42 +103,21 @@ async function updateWeatherInfo(city) {
 ///////////////////////////////////
 //Home page forecasts
 ///////////////////////////////////
-async function updateCityInfo(city) {
-    const cityData = await getFetchData('forecast', city)
-    const timeTaken = '12:00:00'
-    const todayDate = new Date().toISOString().split('T')[0]
-
-    cityItemsContainer.innerHTML = ''
-    cityData.list.forEach(cityWeather => {
-        if (cityWeather.dt_txt.includes(timeTaken) && !cityWeather.dt_txt.includes(todayDate)) {
-            updateCityItems(cityWeather)
-        }
-    })
-}
-
-//Updating city
-function updateCityItems(weatherData) {
+function updateHomeWeatherInfo() {
+    city = city[Math.floor(Math.random()*city.length)]
+    const weatherData = getFetchData('weather', )
     const {
-        dt_txt: date,
-        weather: [{ id }],
-        main: { temp }
+        name: country,
+        main: { temp},
+        weather: [{ id, main }],
     } = weatherData
-    const dateTaken = new Date(date)
-    const dateOption = {
-        day: '2-digit',
-        month: 'short'
-    }
 
-    const dateResult = dateTaken.toLocaleDateString('en-US', dateOption)
-    const cityItem = `
-        <div class="city-item">
-            <h5 class="city-name">${city}</h5>
-            <h5 class="city-date regular-txt">${dateResult}</h5>
-            <h5 class="city-temp">${Math.round(temp)} °C</h5>
-            <img src="Images/${getWeaatherIcon(id)}" class="city-img">
-        </div>  
-    `
-    cityItemsContainer.insertAdjacentHTML('beforeend', cityItem)
+    countryTxt.textContent = country
+    tempTxt.textContent = Math.round(temp) + ' °C'
+    currentDateTxt.textContent = getCurrentDate()
+    weatherSummaryImg.src = `Images/${getWeaatherIcon(id)}`
+    updateCityInfo(city)
+    showDisplaySection(searchCitySection)
 }
 
 ///////////////////////////
