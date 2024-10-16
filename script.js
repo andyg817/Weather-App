@@ -16,7 +16,12 @@ const weatherSummaryImg = document.querySelector('.weather-img')
 const currentDateTxt = document.querySelector('.curr-date')
 const forecastItemsContainer = document.querySelector('.forecast-items-cont')
 const cityItemsContainer = document.querySelector('.city-items')
+const randomCities = ['Tokyo', 'Delhi', 'Shanghai', 'New York', 'Cairo']
 
+//updates home screen when loaded in
+document.addEventListener('DOMContentLoaded', () => {
+    updateHomeWeatherInfo()
+})
 //Search using click and enter on keyboard
 searchBtn.addEventListener('click', () => {
     if (cityInput.value.trim() != '') {
@@ -103,21 +108,30 @@ async function updateWeatherInfo(city) {
 ///////////////////////////////////
 //Home page forecasts
 ///////////////////////////////////
-function updateHomeWeatherInfo() {
-    city = city[Math.floor(Math.random()*city.length)]
-    const weatherData = getFetchData('weather', )
-    const {
-        name: country,
-        main: { temp},
-        weather: [{ id, main }],
-    } = weatherData
+async function updateHomeWeatherInfo() {
+    cityItemsContainer.innerHTML = ''
+    for (const city of randomCities) {
+        try {
+            const weatherData = await getFetchData('weather', city)
+            const {
+                name: cityName,
+                main: { temp },
+                weather: [{ id }]
+            } = weatherData;
 
-    countryTxt.textContent = country
-    tempTxt.textContent = Math.round(temp) + ' °C'
-    currentDateTxt.textContent = getCurrentDate()
-    weatherSummaryImg.src = `Images/${getWeaatherIcon(id)}`
-    updateCityInfo(city)
-    showDisplaySection(searchCitySection)
+            const cityItem = `
+                <div class="city-item">
+                    <h5 class="city-name">${cityName}</h5>
+                    <h5 class="curr-date regular-txt">${getCurrentDate()}</h5>
+                    <h5 class="temp-txt">${Math.round(temp)} °C</h5>
+                    <img src="Images/${getWeaatherIcon(id)}" class="forecast-img">
+                </div>
+            `;
+            cityItemsContainer.insertAdjacentHTML('beforeend', cityItem)
+        } catch (error) {
+            console.error(`Error fetching data for ${city}:`, error)
+        }
+    }
 }
 
 ///////////////////////////
